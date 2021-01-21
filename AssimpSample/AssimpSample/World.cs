@@ -17,6 +17,7 @@ using SharpGL.SceneGraph.Core;
 using SharpGL;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Windows;
 
 namespace AssimpSample
 {
@@ -84,7 +85,7 @@ namespace AssimpSample
         public float ambLightB = 1f;
 
         //lookat
-        
+
         public float eyex = 0.0f;
         public float eyey = 550.2f;
         public float eyez = 2500.0f;
@@ -95,6 +96,22 @@ namespace AssimpSample
         public float upy = 1.0f;
         public float upz = 0.5f;
 
+
+        //animacija
+        public bool start = false;
+        public bool second = false;
+        public bool arrow = false;
+        public bool arrow2 = false;
+
+
+        //arrow pozicija za pocetak animacije
+        //gl.Translate(1500.0f, -10.0f, 50);
+        public float ax = 1500.0f;
+        public float ay = -10.0f;
+        public float az = 50;
+        public float rotate = 0;
+        public float fleg = 0;
+        public bool fleg2 = false;
 
         //Transliranje desnog zida po horizontalnoj osi
         //1000 stoji pocetno
@@ -214,7 +231,7 @@ namespace AssimpSample
             gl.Enable(OpenGL.GL_DEPTH_TEST);
             gl.Enable(OpenGL.GL_CULL_FACE);
             LoadTexture(gl);
-         
+
             m_scene.LoadScene();
             m_scene.Initialize();
             m_arrow.LoadScene();
@@ -227,9 +244,9 @@ namespace AssimpSample
         public void Draw(OpenGL gl)
         {
             gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
-            
-        
-            
+
+
+
             gl.Viewport(0, 0, m_width, m_height);
             gl.MatrixMode(OpenGL.GL_PROJECTION);      // selektuj Projection Matrix
             gl.LoadIdentity();
@@ -241,11 +258,11 @@ namespace AssimpSample
             gl.LookAt(eyex, eyey, eyez, centerx, centery, centerz, upx, upy, upz);
             SetUpLighting(gl);
             gl.PushMatrix();
-            
+
             gl.Translate(0.0f, 0.0f, -m_sceneDistance);
             gl.Rotate(m_xRotation, 1.0f, 0.0f, 0.0f);
             gl.Rotate(m_yRotation, 0.0f, 1.0f, 0.0f);
-            
+
             gl.Disable(OpenGL.GL_TEXTURE_2D);
 
             gl.Enable(OpenGL.GL_TEXTURE_2D);
@@ -281,11 +298,11 @@ namespace AssimpSample
             gl.Flush();
         }
 
-        private void DrawArrow(OpenGL gl){
+        private void DrawArrow(OpenGL gl) {
             gl.PushMatrix();
-            gl.Translate(1500.00f, -10.0f, 50);
+            gl.Translate(ax, ay, az);
             gl.Scale(50.2f, skaliranje, 50.2f);
-            gl.Rotate(-90.0f, 90f, 0f);
+            gl.Rotate(0.0f, 90f, 0f);
             m_arrow.Draw();
 
 
@@ -332,14 +349,14 @@ namespace AssimpSample
 
 
 
-        private void DrawLeviZid(OpenGL gl){
-           
+        private void DrawLeviZid(OpenGL gl) {
+
             gl.PushMatrix();
 
             gl.Rotate(vertical, 0.0f, 1.0f, 0f);
-            gl.Translate(-1000f,-100f, -210.0f);
+            gl.Translate(-1000f, -100f, -210.0f);
             gl.Scale(50.0f, 500.0f, 1000.0f);
-        
+
             Cube c = new Cube();
 
             c.Render(gl, SharpGL.SceneGraph.Core.RenderMode.Render);
@@ -367,32 +384,32 @@ namespace AssimpSample
 
 
 
-        
 
 
 
-        private void DrawZamak(OpenGL gl){
+
+        private void DrawZamak(OpenGL gl) {
             gl.PushMatrix();
             gl.Translate(-50.0f, -600.0f, -600);
             m_scene.Draw();
-           
+
 
             gl.PopMatrix();
 
         }
 
 
-            private void DrawPodloga(OpenGL gl) {
+        private void DrawPodloga(OpenGL gl) {
 
             gl.MatrixMode(OpenGL.GL_TEXTURE);
             gl.PushMatrix();
-            gl.Scale(20.0f,20.0f,20.0f);
+            gl.Scale(20.0f, 20.0f, 20.0f);
 
             gl.Translate(0f, 0f, -10f);
 
             gl.Begin(OpenGL.GL_QUADS);
             gl.Normal(0.0f, 1.0f, 0.0f);
-            gl.Color(0f,1f, 1f);
+            gl.Color(0f, 1f, 1f);
 
             gl.TexCoord(0, 0);
             gl.Vertex(1500.0f, -600f, 1200.0f);
@@ -433,7 +450,7 @@ namespace AssimpSample
             gl.Vertex(-180.0f, -590f, 1200.0f);
             gl.End();
 
-      
+
             gl.PopMatrix();
             gl.MatrixMode(OpenGL.GL_MODELVIEW);
         }
@@ -445,13 +462,13 @@ namespace AssimpSample
             gl.Enable(OpenGL.GL_COLOR_MATERIAL);
             gl.ColorMaterial(OpenGL.GL_FRONT, OpenGL.GL_AMBIENT_AND_DIFFUSE);
             gl.Enable(OpenGL.GL_LIGHTING);
-           // gl.Translate(-1000f, -100f, -210.0f);
+            // gl.Translate(-1000f, -100f, -210.0f);
             float[] ambientLight = { ambLightR, ambLightG, ambLightB, 1.0f };
             float[] positon = { -2000.5f, 2000.5f, -1200.0f, 1.0f };
             float[] dl = { 0.6f, 0.6f, 0.6f, 1.0f };
 
             gl.Material(OpenGL.GL_FRONT, OpenGL.GL_AMBIENT, ambientLight);
-            gl.Material(OpenGL.GL_FRONT, OpenGL.GL_SHININESS,128.0f);
+            gl.Material(OpenGL.GL_FRONT, OpenGL.GL_SHININESS, 128.0f);
 
             gl.Light(OpenGL.GL_LIGHT0, OpenGL.GL_AMBIENT, ambientLight);
             gl.Light(OpenGL.GL_LIGHT0, OpenGL.GL_DIFFUSE, dl);
@@ -512,7 +529,7 @@ namespace AssimpSample
 
                 gl.Build2DMipmaps(OpenGL.GL_TEXTURE_2D, (int)OpenGL.GL_RGBA8, image.Width, image.Height, OpenGL.GL_BGRA, OpenGL.GL_UNSIGNED_BYTE, imageData.Scan0);
 
-              
+
                 gl.TexParameter(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MAG_FILTER, OpenGL.GL_LINEAR);
                 gl.TexParameter(OpenGL.GL_TEXTURE_2D, OpenGL.GL_TEXTURE_MAG_FILTER, OpenGL.GL_LINEAR);
 
@@ -526,6 +543,100 @@ namespace AssimpSample
             }
 
         }
+
+
+        public void startAnimation()
+        {
+            eyex = -50.0f;
+            eyey = -500.0f;
+            eyez = -1300.0f;
+            centerx = -50.0f;
+            centery = -500.0f;
+            centerz = 1.0f;
+            upx = 0.0f;
+            upy = 1.0f;
+            upz = 0.5f;
+            second = true;
+            start = false;
+        }
+         public void secondAnimation()
+        {
+            if (eyez < 2500)
+                eyez += 200.0f;
+            else
+            {
+                second = false;
+                arrow = true;
+                fleg2 = true;
+            }
+
+
+        }
+
+        public void moveArowAnimation()
+        {
+            //MessageBox.Show("Jesi usao rak te pojeo" , "Poruka", MessageBoxButton.OK);
+            if (az <3580) {
+                az += 300;
+                fleg2 = false;
+            }
+            else
+            {
+                fleg += 1;
+                fleg2 = true;
+                arrow2 = false;
+                arrow = true;
+
+            }
+
+            if(fleg == 10)
+            {
+                this.restartAnimation();
+            }
+
+
+        }
+        public void arrowAnimation()
+        {
+            if (fleg < 10 && fleg2)
+            {
+                skaliranje = 30;
+                ax = -50.0f;
+                ay = -520.0f;
+                az = 80.0f;
+                arrow2 = true;
+            }
+        }
+
+       
+
+
+
+        public void restartAnimation(){
+            eyex = 0.0f;
+            eyey = 550.2f;
+            eyez = 2500.0f;
+            centerx = 0.0f;
+            centery = 0.0f;
+            centerz = 1.0f;
+            upx = 0.0f;
+            upy = 1.0f;
+            upz = 0.5f;
+
+            ax = 1500.0f;
+            ay = -10.0f;
+            az = 50.0f;
+
+            start = false;
+            second = false;
+            arrow = false;
+            arrow2 = false;
+        }
+
+        
+
+
+
 
 
 

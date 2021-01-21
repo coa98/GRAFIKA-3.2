@@ -15,7 +15,7 @@ using System.Windows.Navigation;
 using SharpGL.SceneGraph;
 using SharpGL;
 using Microsoft.Win32;
-
+using System.Windows.Threading;
 
 namespace AssimpSample
 {
@@ -30,6 +30,7 @@ namespace AssimpSample
         ///	 Instanca OpenGL "sveta" - klase koja je zaduzena za iscrtavanje koriscenjem OpenGL-a.
         /// </summary>
         World m_world = null;
+        private DispatcherTimer timer;
 
         #endregion Atributi
 
@@ -50,6 +51,19 @@ namespace AssimpSample
                 MessageBox.Show("Neuspesno kreirana instanca OpenGL sveta. Poruka greške: " + e.Message, "Poruka", MessageBoxButton.OK);
                 this.Close();
             }
+
+
+
+
+
+
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(150);
+            timer.Start();
+            timer.Tick += new EventHandler(timer_Tick);
+
+
+
         }
 
         #endregion Konstruktori
@@ -83,6 +97,22 @@ namespace AssimpSample
         {
             m_world.Resize(args.OpenGL, (int)openGLControl.ActualWidth, (int)openGLControl.ActualHeight);
         }
+
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            //pozicioniranje kamere 
+            if (m_world.start)
+                m_world.startAnimation();
+            if(m_world.second)
+                m_world.secondAnimation();
+            if(m_world.arrow)
+                m_world.arrowAnimation();
+            if (m_world.arrow2)
+                m_world.moveArowAnimation();
+
+        }
+
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
@@ -118,6 +148,15 @@ namespace AssimpSample
                     break;
                 case Key.Add: m_world.SceneDistance -= 700.0f; break;
                 case Key.Subtract: m_world.SceneDistance += 700.0f; break;
+                case Key.V:
+                    //ovdde stavis na true sta prvo ide za animaciju
+                    m_world.start = true;
+                    
+                    break;
+                case Key.X:
+                    m_world.restartAnimation();
+                    
+                    break;
                 case Key.F2:
                     OpenFileDialog opfModel = new OpenFileDialog();
                     bool result = (bool) opfModel.ShowDialog();

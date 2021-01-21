@@ -161,3 +161,28 @@ D:\grafika\druga kontrolna tacka\Projekat 3.2\RG - RA vezbe 4 (1)\Vezbe4\AssimpS
 D:\grafika\druga kontrolna tacka\Projekat 3.2\RG - RA vezbe 4 (1)\Vezbe4\AssimpSample\AssimpSample\obj\x86\Debug\AssimpSample.exe
 D:\grafika\druga kontrolna tacka\Projekat 3.2\RG - RA vezbe 4 (1)\Vezbe4\AssimpSample\AssimpSample\obj\x86\Debug\AssimpSample.pdb
 D:\grafika\druga kontrolna tacka\Projekat 3.2\RG - RA vezbe 4 (1)\Vezbe4\AssimpSample\AssimpSample\obj\x86\Debug\AssimpSample.csprojAssemblyReference.cache
+D:\grafika\repo\GRAFIKA-3.2\AssimpSample\AssimpSample\bin\Debug\AssimpLib\Assimp32.dll
+D:\grafika\repo\GRAFIKA-3.2\AssimpSample\AssimpSample\bin\Debug\AssimpLib\Assimp64.dll
+D:\grafika\repo\GRAFIKA-3.2\AssimpSample\AssimpSample\bin\Debug\AssimpLib\AssimpNet.dll
+D:\grafika\repo\GRAFIKA-3.2\AssimpSample\AssimpSample\bin\Debug\3D Models\Touareg\Touareg.3DS
+D:\grafika\repo\GRAFIKA-3.2\AssimpSample\AssimpSample\bin\Debug\AssimpSample.exe.config
+D:\grafika\repo\GRAFIKA-3.2\AssimpSample\AssimpSample\bin\Debug\AssimpSample.exe
+D:\grafika\repo\GRAFIKA-3.2\AssimpSample\AssimpSample\bin\Debug\AssimpSample.pdb
+D:\grafika\repo\GRAFIKA-3.2\AssimpSample\AssimpSample\bin\Debug\AssimpNet.dll
+D:\grafika\repo\GRAFIKA-3.2\AssimpSample\AssimpSample\bin\Debug\SharpGL.dll
+D:\grafika\repo\GRAFIKA-3.2\AssimpSample\AssimpSample\bin\Debug\SharpGL.SceneGraph.dll
+D:\grafika\repo\GRAFIKA-3.2\AssimpSample\AssimpSample\bin\Debug\SharpGL.WPF.dll
+D:\grafika\repo\GRAFIKA-3.2\AssimpSample\AssimpSample\bin\Debug\System.Drawing.Common.dll
+D:\grafika\repo\GRAFIKA-3.2\AssimpSample\AssimpSample\obj\x86\Debug\AssimpSample.csprojAssemblyReference.cache
+D:\grafika\repo\GRAFIKA-3.2\AssimpSample\AssimpSample\obj\x86\Debug\MainWindow.baml
+D:\grafika\repo\GRAFIKA-3.2\AssimpSample\AssimpSample\obj\x86\Debug\MainWindow.g.cs
+D:\grafika\repo\GRAFIKA-3.2\AssimpSample\AssimpSample\obj\x86\Debug\App.g.cs
+D:\grafika\repo\GRAFIKA-3.2\AssimpSample\AssimpSample\obj\x86\Debug\AssimpSample_Content.g.cs
+D:\grafika\repo\GRAFIKA-3.2\AssimpSample\AssimpSample\obj\x86\Debug\AssimpSample_MarkupCompile.cache
+D:\grafika\repo\GRAFIKA-3.2\AssimpSample\AssimpSample\obj\x86\Debug\AssimpSample.g.resources
+D:\grafika\repo\GRAFIKA-3.2\AssimpSample\AssimpSample\obj\x86\Debug\AssimpSample.Properties.Resources.resources
+D:\grafika\repo\GRAFIKA-3.2\AssimpSample\AssimpSample\obj\x86\Debug\AssimpSample.csproj.GenerateResource.cache
+D:\grafika\repo\GRAFIKA-3.2\AssimpSample\AssimpSample\obj\x86\Debug\AssimpSample.csproj.CoreCompileInputs.cache
+D:\grafika\repo\GRAFIKA-3.2\AssimpSample\AssimpSample\obj\x86\Debug\AssimpSample.csproj.CopyComplete
+D:\grafika\repo\GRAFIKA-3.2\AssimpSample\AssimpSample\obj\x86\Debug\AssimpSample.exe
+D:\grafika\repo\GRAFIKA-3.2\AssimpSample\AssimpSample\obj\x86\Debug\AssimpSample.pdb
