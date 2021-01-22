@@ -543,6 +543,7 @@ namespace AssimpSample
             }
 
         }
+       
 
 
         public void startAnimation()
@@ -556,6 +557,14 @@ namespace AssimpSample
             upx = 0.0f;
             upy = 1.0f;
             upz = 0.5f;
+
+            m_sceneDistance = -200;
+            m_xRotation = 0.0f;
+            m_yRotation = 0.0f;
+
+            vertical = 0.0f;
+            horizontal = 800;
+
             second = true;
             start = false;
         }
@@ -575,7 +584,6 @@ namespace AssimpSample
 
         public void moveArowAnimation()
         {
-            //MessageBox.Show("Jesi usao rak te pojeo" , "Poruka", MessageBoxButton.OK);
             if (az <3580) {
                 az += 300;
                 fleg2 = false;
@@ -626,6 +634,8 @@ namespace AssimpSample
             ax = 1500.0f;
             ay = -10.0f;
             az = 50.0f;
+            fleg = 0;
+            fleg2 = false;
 
             start = false;
             second = false;
