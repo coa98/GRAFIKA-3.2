@@ -116,150 +116,171 @@ namespace AssimpSample
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            switch (e.Key)
+
+            if (m_world.deny)
             {
-                case Key.F4: this.Close(); break;
-                case Key.I:
-                    if (m_world.RotationX - 5.0f >= -25)
-                        m_world.RotationX -= 5.0f;
-                    else
-                        MessageBox.Show(m_world.RotationX.ToString() + " maksimalno rotirano", "GRESKA", MessageBoxButton.OK);
+                switch (e.Key)
+                {
+                    case Key.F4: this.Close(); break;
+                    case Key.I:
+                        if (m_world.RotationX - 5.0f >= -25)
+                            m_world.RotationX -= 5.0f;
+                        else
+                            MessageBox.Show(m_world.RotationX.ToString() + " maksimalno rotirano", "GRESKA", MessageBoxButton.OK);
 
-                    break;
-                case Key.K:
-                    if (m_world.RotationX < 90)
-                        m_world.RotationX += 5.0f;
-                    else
-                        MessageBox.Show(m_world.RotationX.ToString() + " maksimalno rotirano", "GRESKA", MessageBoxButton.OK);
-                    break;
-                //minimlano -30 maksimalno 180
-                case Key.J:
-                    if (m_world.RotationY - 5.0f > -185)
-                        m_world.RotationY -= 5.0f;
-                    else
-                        MessageBox.Show(m_world.RotationY.ToString() + " maksimalno rotirano", "GRESKA", MessageBoxButton.OK);
+                        break;
+                    case Key.K:
+                        if (m_world.RotationX < 90)
+                            m_world.RotationX += 5.0f;
+                        else
+                            MessageBox.Show(m_world.RotationX.ToString() + " maksimalno rotirano", "GRESKA", MessageBoxButton.OK);
+                        break;
+                    //minimlano -30 maksimalno 180
+                    case Key.J:
+                        if (m_world.RotationY - 5.0f > -185)
+                            m_world.RotationY -= 5.0f;
+                        else
+                            MessageBox.Show(m_world.RotationY.ToString() + " maksimalno rotirano", "GRESKA", MessageBoxButton.OK);
 
-                    break;
-                case Key.L:
-                    if (m_world.RotationY < 180)
-                        m_world.RotationY += 5.0f;
-                    else
-                        MessageBox.Show(m_world.RotationY.ToString() + " maksimalno rotirano", "GRESKA", MessageBoxButton.OK);
-                    break;
-                case Key.Add: m_world.SceneDistance -= 700.0f; break;
-                case Key.Subtract: m_world.SceneDistance += 700.0f; break;
-                case Key.V:
-                    //ovdde stavis na true sta prvo ide za animaciju
-                    m_world.start = true;
-                    
-                    break;
-                case Key.X:
-                    m_world.restartAnimation();
-                    
-                    break;
-                case Key.F2:
-                    OpenFileDialog opfModel = new OpenFileDialog();
-                    bool result = (bool) opfModel.ShowDialog();
-                    if (result)
-                    {
+                        break;
+                    case Key.L:
+                        if (m_world.RotationY < 180)
+                            m_world.RotationY += 5.0f;
+                        else
+                            MessageBox.Show(m_world.RotationY.ToString() + " maksimalno rotirano", "GRESKA", MessageBoxButton.OK);
+                        break;
+                    case Key.Add: m_world.SceneDistance -= 700.0f; break;
+                    case Key.Subtract: m_world.SceneDistance += 700.0f; break;
+                    case Key.V:
+                        //ovdde stavis na true sta prvo ide za animaciju
+                        m_world.start = true;
 
-                        try
+                        break;
+                    case Key.X:
+                        m_world.restartAnimation();
+
+                        break;
+                    case Key.F2:
+                        OpenFileDialog opfModel = new OpenFileDialog();
+                        bool result = (bool)opfModel.ShowDialog();
+                        if (result)
                         {
-                            World newWorld = new World(Directory.GetParent(opfModel.FileName).ToString(), Path.GetFileName(opfModel.FileName), (int)openGLControl.Width, (int)openGLControl.Height, openGLControl.OpenGL);
-                            m_world.Dispose();
-                            m_world = newWorld;
-                            m_world.Initialize(openGLControl.OpenGL);
+
+                            try
+                            {
+                                World newWorld = new World(Directory.GetParent(opfModel.FileName).ToString(), Path.GetFileName(opfModel.FileName), (int)openGLControl.Width, (int)openGLControl.Height, openGLControl.OpenGL);
+                                m_world.Dispose();
+                                m_world = newWorld;
+                                m_world.Initialize(openGLControl.OpenGL);
+                            }
+                            catch (Exception exp)
+                            {
+                                MessageBox.Show("Neuspesno kreirana instanca OpenGL sveta:\n" + exp.Message, "GRESKA", MessageBoxButton.OK);
+                            }
                         }
-                        catch (Exception exp)
-                        {
-                            MessageBox.Show("Neuspesno kreirana instanca OpenGL sveta:\n" + exp.Message, "GRESKA", MessageBoxButton.OK );
-                        }
-                    }
-                    break;
+                        break;
+                }
             }
         }
 
         private void moveRight(object sender, RoutedEventArgs e)
         {
+            if (m_world.deny)
+            {
 
-            
-            if (m_world.horizontal < 1000)
-            { 
-                m_world.horizontal += 100.0f;
+                if (m_world.horizontal < 1000)
+                {
+                    m_world.horizontal += 100.0f;
 
-                right.Text = m_world.horizontal.ToString() + " ";
-            } else
-                MessageBox.Show(m_world.horizontal.ToString() + " je poemreno. To je maksimalno moguce", "GRESKA", MessageBoxButton.OK);
-
+                    right.Text = m_world.horizontal.ToString() + " ";
+                }
+                else
+                    MessageBox.Show(m_world.horizontal.ToString() + " je poemreno. To je maksimalno moguce", "GRESKA", MessageBoxButton.OK);
+            }
         }
 
         private void moveLeft(object sender, RoutedEventArgs e)
         {
-            if (m_world.horizontal - 100.0 >= 600)
+            if (m_world.deny)
             {
-                m_world.horizontal -= 100.0f;
 
-                right.Text = m_world.horizontal.ToString() + " ";
+                if (m_world.horizontal - 100.0 >= 600)
+                {
+                    m_world.horizontal -= 100.0f;
+
+                    right.Text = m_world.horizontal.ToString() + " ";
+                }
+                else
+                    MessageBox.Show(m_world.horizontal.ToString() + " je poemreno. To je minimalno moguce", "GRESKA", MessageBoxButton.OK);
+
             }
-            else
-                MessageBox.Show(m_world.horizontal.ToString() + " je poemreno. To je minimalno moguce", "GRESKA", MessageBoxButton.OK);
-
-
 
         }
 
         private void rotateRight(object sender, RoutedEventArgs e)
         {
-            if (m_world.vertical < 90.0)
+            if (m_world.deny)
             {
-                m_world.vertical += 5.0f;
 
-                rotate.Text = m_world.vertical.ToString() + " ";
+                if (m_world.vertical < 90.0)
+                {
+                    m_world.vertical += 5.0f;
+
+                    rotate.Text = m_world.vertical.ToString() + " ";
+                }
+                else
+                    MessageBox.Show(m_world.vertical.ToString() + " je rotirano. To je maksimalno moguce", "GRESKA", MessageBoxButton.OK);
             }
-            else
-                MessageBox.Show(m_world.vertical.ToString() + " je rotirano. To je maksimalno moguce", "GRESKA", MessageBoxButton.OK);
-
 
         }
 
         private void rotateLeft(object sender, RoutedEventArgs e)
         {
-            if (m_world.vertical -5.0f >= 0.0)
+            if (m_world.deny)
             {
-                m_world.vertical -= 5.0f;
 
-                rotate.Text = m_world.vertical.ToString() + " ";
+                if (m_world.vertical - 5.0f >= 0.0)
+                {
+                    m_world.vertical -= 5.0f;
+
+                    rotate.Text = m_world.vertical.ToString() + " ";
+                }
+                else
+                    MessageBox.Show(m_world.vertical.ToString() + " je rotirano. To je minimalno moguce", "GRESKA", MessageBoxButton.OK);
             }
-            else
-                MessageBox.Show(m_world.vertical.ToString() + " je rotirano. To je minimalno moguce", "GRESKA", MessageBoxButton.OK);
-
 
         }
 
         private void scalePlus(object sender, RoutedEventArgs e)
         {
-            if (m_world.skaliranje  < 50.2)
+            if (m_world.deny)
             {
-                m_world.skaliranje += 5.0f;
 
-                skaliranje.Text = m_world.skaliranje.ToString() + " ";
+                if (m_world.skaliranje < 50.2)
+                {
+                    m_world.skaliranje += 5.0f;
+
+                    skaliranje.Text = m_world.skaliranje.ToString() + " ";
+                }
+                else
+                    MessageBox.Show(m_world.skaliranje.ToString() + " je skaliran. To je maksimalno moguce", "GRESKA", MessageBoxButton.OK);
             }
-            else
-                MessageBox.Show(m_world.skaliranje.ToString() + " je skaliran. To je maksimalno moguce", "GRESKA", MessageBoxButton.OK);
-
         }
 
         private void scaleMinus(object sender, RoutedEventArgs e)
         {
-            if (m_world.skaliranje - 5.0f > 10.2)
+            if (m_world.deny)
             {
-                m_world.skaliranje -= 5.0f;
 
-                skaliranje.Text = m_world.skaliranje.ToString() + " ";
+                if (m_world.skaliranje - 5.0f > 10.2)
+                {
+                    m_world.skaliranje -= 5.0f;
+
+                    skaliranje.Text = m_world.skaliranje.ToString() + " ";
+                }
+                else
+                    MessageBox.Show(m_world.skaliranje.ToString() + " je skaliran. To je minimalno moguce", "GRESKA", MessageBoxButton.OK);
             }
-            else
-                MessageBox.Show(m_world.skaliranje.ToString() + " je skaliran. To je minimalno moguce", "GRESKA", MessageBoxButton.OK);
-
         }
     }
 }

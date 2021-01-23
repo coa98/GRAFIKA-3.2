@@ -125,6 +125,9 @@ namespace AssimpSample
         //strela
         public float skaliranje = 50.2f;
 
+
+        public bool deny = true;
+
         #endregion Atributi
 
         #region Properties
@@ -567,6 +570,7 @@ namespace AssimpSample
 
             second = true;
             start = false;
+            deny = false;
         }
          public void secondAnimation()
         {
@@ -641,6 +645,7 @@ namespace AssimpSample
             second = false;
             arrow = false;
             arrow2 = false;
+            deny = true;
         }
 
         
